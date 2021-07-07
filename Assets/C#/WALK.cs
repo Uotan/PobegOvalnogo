@@ -40,6 +40,10 @@ public class WALK : MonoBehaviour
         _rigidbody.velocity = (Vector2.up * JumpForce);
         sound.Play();
     }
+    public void DownForce()
+    {
+        _rigidbody.AddForce(Vector3.down*400);
+    }
     public void Walk()
     {
         _moveState = MoveState.Walk;
@@ -62,10 +66,6 @@ public class WALK : MonoBehaviour
                 {
                     Jump();
                 }
-                //if (ArrowUP.ispressed == true)
-                //{
-                //    Jump();
-                //}
             }
             if (_moveState!= MoveState.Down)
             {
@@ -91,6 +91,10 @@ public class WALK : MonoBehaviour
             _animatorController.Play("Jump");
             CALL.size = new Vector2(0.28f, 0.26f);
             CALL.offset = new Vector2(0f, 0.13f);
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                DownForce();
+            }
         }
 
     }
